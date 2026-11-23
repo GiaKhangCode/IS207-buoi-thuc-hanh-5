@@ -1,0 +1,119 @@
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    padding: 12px;
+    font: 14px/1.4 Arial, sans-serif;
+    color: black;
+    background: white;
+}
+
+main { max-width: 36rem; margin: 8px auto; }
+.trang-dang-nhap { max-width: 19rem; }
+.trang-don-hang { max-width: 23rem; }
+.trang-hoa-don { max-width: 30rem; }
+
+header { margin-bottom: 8px; }
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+}
+
+h1 { margin: 0 0 8px; font-size: 18px; }
+
+.trang-don-hang > h1,
+.trang-hoa-don > h1 {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+p { margin: 8px 0; }
+
+.khung {
+    padding: 8px;
+    border: 1px solid black;
+}
+
+a, .lien-ket { color: #0000a0; }
+
+input, select, textarea, button { font: inherit; }
+button { cursor: pointer; }
+
+.lien-ket {
+    border: 0;
+    padding: 0;
+    background: none;
+    text-decoration: underline;
+}
+
+.dang-nhap {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: 6px 8px;
+    align-items: center;
+}
+
+.dang-nhap button { grid-column: 2; justify-self: start; }
+
+.chon-khach {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px 8px;
+}
+
+.chon-khach select { width: 58%; }
+
+.bang-cuon { overflow-x: auto; }
+
+table { width: 100%; border-collapse: collapse; }
+
+th, td {
+    padding: 2px 5px;
+    border: 1px solid black;
+}
+
+tbody th { text-align: left; font-weight: normal; }
+tfoot th { text-align: right; }
+.trang-don-hang tbody td:first-child,
+.trang-hoa-don tbody td:first-child { text-align: center; }
+
+.trang-don-hang td:nth-child(3) { white-space: nowrap; }
+.trang-hoa-don td:nth-child(3) { text-align: center; }
+
+.topping th { padding-left: 15px; }
+.trang-hoa-don .topping th { padding-left: 5px; }
+
+.so { text-align: right; white-space: nowrap; }
+.so input { width: 3.25rem; text-align: right; }
+
+.dat-hang {
+    display: grid;
+    gap: 4px;
+    margin-top: 8px;
+}
+
+.dat-hang button { justify-self: start; }
+textarea { resize: vertical; }
+
+.thong-tin { margin: 0 0 8px; }
+.thong-tin div { overflow-wrap: anywhere; }
+.thong-tin dt, .thong-tin dd { display: inline; margin: 0; }
+
+.ghi-chu { margin: 3px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.tong-hoa-don { margin: 2px 0 0; text-align: right; }
+
+.loi { color: #a00000; }
+.thong-bao { font-weight: bold; }
+
+@media (max-width: 380px) {
+    body { padding: 6px; }
+    th, td { padding-inline: 3px; }
+}
