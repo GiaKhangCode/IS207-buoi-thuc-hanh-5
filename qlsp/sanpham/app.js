@@ -2,6 +2,9 @@ $(document).ready(function () {
   const $categorySelect = $("#category");
   const $productsContainer = $("#products");
   const $statusBox = $("#status");
+  const $cartCount = $("#cart-count");
+  const $cartStatus = $("#cart-status");
+  const cartToken = $('meta[name="cart-token"]').attr("content");
 
   function escapeHtml(value) {
     return String(value ?? "").replace(/[&<>"']/g, function (character) {
@@ -81,23 +84,25 @@ $(document).ready(function () {
       '<p class="price">' +
       formatPrice(product.GIA) +
       "</p>" +
-      '<form class="buy-row">' +
+      '<form class="buy-row" data-masp="' +
+      escapeHtml(product.MASP) +
+      '">' +
       '<label for="qty-' +
       escapeHtml(product.MASP) +
       '">Số lượng</label>' +
       '<input id="qty-' +
       escapeHtml(product.MASP) +
-      '" type="number" min="1" value="1" aria-label="Số lượng ' +
+      '" name="soluong" type="number" min="1" max="9999" value="1" required aria-label="Số lượng ' +
       escapeHtml(product.TENSP) +
       '">' +
-      '<button type="button">Chọn mua</button>' +
+      '<button type="submit">Chọn mua</button>' +
       "</form></div></article>"
     );
   }
 
   function loadProducts(category) {
     $productsContainer.empty();
-    $statusBox.removeClass("is-error");
+    $statusBox.removeClass("is-error is-empty");
 
     if (!category) {
       $statusBox.text("Chọn một loại sản phẩm để bắt đầu.");
@@ -113,7 +118,7 @@ $(document).ready(function () {
       dataType: "json",
       success: function (products) {
         if (!products.length) {
-          $statusBox.text("Chưa có sản phẩm trong loại này.");
+          $statusBox.text("Chưa có sản phẩm trong loại này.").addClass("is-empty");
           return;
         }
 
@@ -134,6 +139,41 @@ $(document).ready(function () {
 
   $categorySelect.on("change", function () {
     loadProducts($(this).val());
+  });
+
+  $productsContainer.on("submit", ".buy-row", function (event) {
+    event.preventDefault();
+    const $form = $(this);
+    const $button = $form.find("button");
+    if ($button.prop("disabled")) {
+      return;
+    }
+
+    $button.prop("disabled", true);
+    $cartStatus.removeClass("is-error").empty();
+
+    $.ajax({
+      url: "../giohang/them.php",
+      method: "POST",
+      dataType: "json",
+      data: {
+        masp: $form.attr("data-masp"),
+        soluong: $form.find('[name="soluong"]')[0].valueAsNumber,
+        token: cartToken,
+      },
+      success: function (cart) {
+        // Các phản hồi AJAX có thể đến không theo thứ tự gửi.
+        $cartCount.text(Math.max(Number($cartCount.text()), cart.count));
+      },
+      error: function (request) {
+        $cartStatus
+          .text(request.responseJSON?.error || "Không thêm được sản phẩm vào giỏ hàng.")
+          .addClass("is-error");
+      },
+      complete: function () {
+        $button.prop("disabled", false);
+      },
+    });
   });
 
   loadCategories();
