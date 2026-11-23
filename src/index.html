@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phần III - Bài 5: Đăng nhập AJAX</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px auto;
+            max-width: 400px;
+        }
+
+        #layout {
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 25px;
+        }
+
+        h3 {
+            margin: 15px 0 5px 0;
+            text-align: left;
+            font-size: 15px;
+        }
+
+        .txt {
+            width: 100%;
+            padding: 8px 10px;
+            box-sizing: border-box;
+            border: 1px solid #7a7a7a;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .button {
+            margin-top: 20px;
+            background-color: #0071a4;
+            color: white;
+            border: none;
+            padding: 10px 40px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #005c87;
+        }
+
+        #kq {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .success {
+            color: #0066cc;
+        }
+
+        .error {
+            color: #cc0000;
+        }
+
+        .nav-back {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .nav-back a {
+            color: #666;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="layout">
+        <h1>Login</h1>
+        <form name="frm" onsubmit="event.preventDefault(); postData();">
+            <h3>Username</h3>
+            <input type="text" class="txt" id="txtuser" placeholder="Tên đăng nhập">
+
+            <h3>Password</h3>
+            <input type="password" class="txt" id="txtpass" placeholder="Mật khẩu">
+            <br>
+
+            <input type="button" class="button" id="click" name="login" value="Login" onclick="postData()">
+        </form>
+    </div>
+
+    <div id="kq"></div>
+
+
+    <script>
+        var xmlHttp = false;
+        // Khởi tạo XMLHttpRequest
+        if (window.XMLHttpRequest) {
+            xmlHttp = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        // Gửi dữ liệu bằng phương thức POST
+        function postData() {
+            var txtuser = document.getElementById("txtuser");
+            var txtpass = document.getElementById("txtpass");
+            var obj = document.getElementById("kq");
+
+            if (!txtuser.value.trim() || !txtpass.value.trim()) {
+                obj.innerHTML = "<p style='color: orange;'>Vui lòng nhập đầy đủ Username và Password!</p>";
+                return;
+            }
+
+            if (xmlHttp) {
+                var url = "loginBT.php";
+                var param = "name=" + encodeURIComponent(txtuser.value) + "&pass=" + encodeURIComponent(txtpass.value);
+
+                xmlHttp.open("POST", url, true);
+                xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                // Đón dữ liệu từ server trả về
+                xmlHttp.onreadystatechange = function () {
+                    if (xmlHttp.readyState == 4) {
+                        if (xmlHttp.status == 200) {
+                            var resp = xmlHttp.responseText;
+                            if (resp.indexOf("Chúc mừng") !== -1) {
+                                obj.innerHTML = "<p class='success'>" + resp + "</p>";
+                            } else {
+                                obj.innerHTML = "<p class='error'>" + resp + "</p>";
+                            }
+                        } else {
+                            obj.innerHTML = "<p class='error'>Lỗi kết nối tới server (Mã: " + xmlHttp.status + ")</p>";
+                        }
+                    }
+                };
+
+                xmlHttp.send(param);
+            }
+        }
+    </script>
+</body>
+
+</html>
