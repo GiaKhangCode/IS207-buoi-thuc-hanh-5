@@ -7,6 +7,7 @@ services:
       - "8000:80"
     volumes:
       - ./src:/var/www/html
+      - ./quanlynhansu:/var/www/html/quanlynhansu
     depends_on:
       - db
 
