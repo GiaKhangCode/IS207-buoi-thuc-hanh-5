@@ -11,3 +11,26 @@ PHP + MySQL + AJAX. Đề bài: `BTTH 4 PHP_MySQL_AJAX 2.pdf`.
 | `foodshipping` | riêng        | Mục IV Bài 9                                     |
 | `thuexe`       | riêng        | Mục IV Bài 11                                    |
 | `sql`          |              | File .sql export của từng CSDL                   |
+
+## Chạy môi trường bằng Docker
+
+```bash
+docker compose up -d --build   # khởi động
+docker compose down            # dừng (giữ dữ liệu)
+docker compose down -v         # dừng và xóa sạch CSDL, lần sau chạy lại file trong sql/
+```
+
+| Dịch vụ | Địa chỉ |
+|---|---|
+| Web (PHP 8.2 + Apache) | http://localhost:8080 |
+| phpMyAdmin | http://localhost:8081 |
+| MySQL 8.0 (từ máy, ví dụ MySQL Workbench) | `localhost:3307`, user `root`, không mật khẩu |
+
+Trong code PHP, host CSDL là `db` (không phải `localhost`):
+
+```php
+$connect = new mysqli('db', 'root', '', 'qlsp');
+```
+
+File `.sql` trong `sql/` chỉ tự chạy khi CSDL khởi tạo lần đầu, theo thứ tự tên file.
+Thêm file mới thì chạy `docker compose down -v` rồi `up` lại, hoặc import bằng phpMyAdmin.

@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
 
-// Thông tin kết nối MySQL mặc định của XAMPP.
-$servername = 'localhost';
+// Docker: host là tên service 'db' trong docker-compose.yml (XAMPP thì đổi lại 'localhost').
+$servername = 'db';
 $username = 'root';
 $password = '';
 $dbname = 'qlsp';
