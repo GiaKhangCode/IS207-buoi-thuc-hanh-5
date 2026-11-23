@@ -1,40 +1,41 @@
 services:
   web:
-    build: ./docker
+    build: .
+    container_name: uit_web_php
+    restart: always
     ports:
-      - "8080:80"
+      - "8000:80"
     volumes:
-      - ./:/var/www/html
+      - ./src:/var/www/html
     depends_on:
-      db:
-        condition: service_healthy
+      - db
 
   db:
     image: mysql:8.0
-    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    container_name: uit_web_mysql
+    restart: always
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"   # root không mật khẩu, giống XAMPP và code trong đề
-      TZ: Asia/Ho_Chi_Minh
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: qlsp
+    command: --default-authentication-plugin=mysql_native_password
     ports:
-      - "3307:3306"                       # 3307 để không đụng MySQL/XAMPP trên máy
+      - "3306:3306"
     volumes:
-      - db_data:/var/lib/mysql
-      - ./sql:/docker-entrypoint-initdb.d:ro
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1"]
-      interval: 5s
-      retries: 20
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
   phpmyadmin:
-    image: phpmyadmin:5
+    image: phpmyadmin:latest
+    container_name: uit_web_pma
+    restart: always
     ports:
       - "8081:80"
     environment:
       PMA_HOST: db
       PMA_USER: root
-      PMA_PASSWORD: ""
+      PMA_PASSWORD: root
     depends_on:
       - db
 
 volumes:
-  db_data:
+  mysql_data:

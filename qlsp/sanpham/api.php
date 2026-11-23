@@ -18,9 +18,9 @@ try {
     if ($action === 'products') {
         $category = trim((string)($_GET['category'] ?? ''));
         if ($category === '' || $category === '*') {
-            $result = $db->query('SELECT MASP, TENSP, DVT, NUOCSX, GIA, HINHANH, LOAISP FROM sanpham ORDER BY LOAISP, TENSP');
+            $result = $db->query('SELECT MASP, TENSP, DVT, NUOCSX, GIA, HINHANH, LOAISP FROM sanpham ORDER BY LOAISP, MASP');
         } else {
-            $statement = $db->prepare('SELECT MASP, TENSP, DVT, NUOCSX, GIA, HINHANH, LOAISP FROM sanpham WHERE LOAISP = ? ORDER BY TENSP');
+            $statement = $db->prepare('SELECT MASP, TENSP, DVT, NUOCSX, GIA, HINHANH, LOAISP FROM sanpham WHERE LOAISP = ? ORDER BY MASP');
             $statement->bind_param('s', $category);
             $statement->execute();
             $result = $statement->get_result();
