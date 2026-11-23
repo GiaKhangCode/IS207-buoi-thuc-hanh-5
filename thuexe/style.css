@@ -1,0 +1,26 @@
+* { box-sizing: border-box; }
+body { margin: 12px; font: 14px/1.4 "Times New Roman", Times, serif; color: black; background: white; }
+main { max-width: 780px; margin: 16px auto; }
+nav { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-bottom: 14px; }
+a { color: #0000a0; }
+h1 { font-size: 18px; margin: 0 0 12px; }
+form { margin: 0; }
+input, select, button { font: inherit; max-width: 100%; }
+button { cursor: pointer; padding: 2px 12px; }
+button:disabled { cursor: wait; }
+.form-nhap { display: grid; grid-template-columns: max-content minmax(0, 220px); align-items: center; gap: 6px 12px; }
+.form-nhap button { grid-column: 2; justify-self: start; margin-top: 6px; }
+.bo-loc { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-bottom: 10px; }
+.bo-loc label { display: inline-flex; align-items: center; gap: 8px; }
+.bo-loc select { min-width: 150px; }
+.bang-cuon { overflow-x: auto; margin: 10px 0; }
+table { border-collapse: collapse; width: 100%; }
+caption { font-weight: bold; padding-bottom: 4px; }
+th, td { border: 1px solid black; padding: 2px 6px; }
+th { text-align: center; }
+td.so { text-align: right; white-space: nowrap; }
+td.chuc-nang { text-align: center; }
+td.chuc-nang button { min-width: 90px; }
+td.rong { text-align: center; }
+.thong-bao { min-height: 20px; margin: 8px 0; }
+.loi { color: #a00000; }
