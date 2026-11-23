@@ -124,13 +124,17 @@ INSERT INTO `login` (`username`, `password`) VALUES
 ('test', '1234'),
 ('admin', 'admin');
 
-INSERT INTO `sanpham` VALUES 
-('SP01', 'But bi', 'cay', 'Viet Nam', 5000, 'butbi.jpg', 'Sản phẩm bút'),
-('SP02', 'But chi', 'cay', 'Viet Nam', 3000, 'butchi.jpg', 'Sản phẩm bút'),
-('SP03', 'Phan viet bang', 'hop', 'Viet Nam', 5000, 'phanvietbang.jpg', 'Sản phẩm phấn'),
-('SP04', 'Phan khong bui', 'hop', 'Nhat Ban', 7000, 'phankhongbui.jpg', 'Sản phẩm phấn'),
-('SP05', 'Bang trang', 'cai', 'Viet Nam', 50000, 'bangtrang.jpg', 'Sản phẩm bảng'),
-('SP06', 'Tap 200 trang', 'quyen', 'Viet Nam', 12000, 'tap.jpg', 'Sản phẩm tập');
+INSERT INTO `sanpham` (`MASP`, `TENSP`, `DVT`, `NUOCSX`, `GIA`, `HINHANH`, `LOAISP`) VALUES
+('P001', 'Phan viet bang', 'hop', 'Nhật Bản', 5000, 'phan-viet-bang.jpg', 'Phấn'),
+('P002', 'Phan khong bui', 'hop', 'Nhật Bản', 7000, 'phan-khong-bui.jpg', 'Phấn'),
+('B001', 'Bút chì gỗ', 'cây', 'Việt Nam', 5000, 'but-chi-go.jpg', 'Bút'),
+('B002', 'Bút bi xanh', 'cây', 'Việt Nam', 7000, 'but-bi-xanh.jpg', 'Bút'),
+('B003', 'Bút bi xanh (hộp)', 'hộp', 'Việt Nam', 100000, 'but-bi-xanh.jpg', 'Bút'),
+('B004', 'Bút bi xanh ngòi 0,7 mm', 'cây', 'Việt Nam', 20000, 'but-bi-xanh.jpg', 'Bút'),
+('B005', 'Bút chì gỗ HB', 'cây', 'Việt Nam', 5000, 'but-chi-go.jpg', 'Bút'),
+('B006', 'Bút chì gỗ 2B', 'cây', 'Việt Nam', 6000, 'but-chi-go.jpg', 'Bút'),
+('B007', 'Bút chì gỗ 4B', 'cây', 'Việt Nam', 7000, 'but-chi-go.jpg', 'Bút'),
+('B008', 'Bút chì gỗ 6B', 'cây', 'Việt Nam', 8000, 'but-chi-go.jpg', 'Bút');
 
 
 -- =========================================================================

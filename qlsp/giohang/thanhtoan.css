@@ -1,0 +1,255 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 24px 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #222;
+    background-color: #ffffff;
+}
+
+.checkout-page {
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+.checkout-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.checkout-nav a {
+    color: #1a73e8;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.checkout-nav a:hover {
+    text-decoration: underline;
+}
+
+.checkout-message {
+    margin-bottom: 14px;
+    padding: 10px 14px;
+    border-radius: 4px;
+    display: none;
+    font-weight: 600;
+}
+
+.checkout-message.is-visible {
+    display: block;
+}
+
+.checkout-message.is-error {
+    background-color: #fdecea;
+    color: #b71c1c;
+    border: 1px solid #f5c6cb;
+}
+
+.checkout-message.is-success {
+    background-color: #e8f5e9;
+    color: #1b5e20;
+    border: 1px solid #c3e6cb;
+}
+
+.checkout-layout {
+    display: grid;
+    grid-template-columns: 1fr 290px;
+    gap: 20px;
+    align-items: start;
+}
+
+.checkout-card {
+    background-color: #f4f4f4;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    padding: 20px 22px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+}
+
+.form-col h2 {
+    margin: 0 0 16px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #111;
+}
+
+.field {
+    margin-bottom: 16px;
+}
+
+.field label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #222;
+}
+
+.field .icon {
+    margin-right: 4px;
+}
+
+.field input,
+.field select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 14px;
+    background-color: #fff;
+    color: #222;
+}
+
+.field input:focus,
+.field select:focus {
+    outline: none;
+    border-color: #4caf50;
+}
+
+.field select:disabled {
+    background-color: #efefef;
+    color: #777;
+}
+
+.btn-checkout {
+    margin-top: 8px;
+    width: 100%;
+    padding: 12px 16px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.btn-checkout:hover {
+    background-color: #43a047;
+}
+
+.btn-checkout:disabled {
+    background-color: #9ccc9c;
+    cursor: not-allowed;
+}
+
+.summary-header {
+    display: grid;
+    grid-template-columns: 1fr 44px auto;
+    align-items: center;
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 14px;
+}
+
+.summary-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.summary-row {
+    display: grid;
+    grid-template-columns: 1fr 44px auto;
+    align-items: center;
+    gap: 6px;
+}
+
+.item-name {
+    color: #1e88e5;
+    text-decoration: underline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.item-qty {
+    text-align: center;
+    color: #333;
+}
+
+.item-price {
+    text-align: right;
+    color: #666;
+    white-space: nowrap;
+}
+
+.summary-divider {
+    border: none;
+    border-top: 1px solid #d5d5d5;
+    margin: 18px 0 14px;
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+}
+
+.summary-total strong {
+    font-size: 16px;
+    color: #111;
+}
+
+.empty-box,
+.success-box {
+    background-color: #f4f4f4;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    padding: 28px;
+    text-align: center;
+}
+
+.success-box h2 {
+    margin-top: 0;
+    color: #2e7d32;
+}
+
+.success-actions {
+    margin-top: 18px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.btn-back,
+.btn-secondary {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.btn-back {
+    background-color: #f0ad4e;
+    color: #fff;
+}
+
+.btn-secondary {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+@media (max-width: 820px) {
+    .checkout-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+}
+

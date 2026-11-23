@@ -8,6 +8,7 @@ services:
     volumes:
       - ./src:/var/www/html
       - ./quanlynhansu:/var/www/html/quanlynhansu
+      - ./qlsp:/var/www/html/qlsp
     depends_on:
       - db
 
