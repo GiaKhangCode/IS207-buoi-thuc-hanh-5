@@ -132,6 +132,7 @@ $(document).ready(function () {
       data: payload,
     })
       .done(function (result) {
+        $btnSubmit.text("Đã thanh toán");
         showMessage(result.message || "Thanh toán thành công!", false);
         $("#order-id").text("#" + result.sohd);
         $("#order-total").text(formatMoney(result.total));
